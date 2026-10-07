@@ -1,0 +1,71 @@
+{
+  "name": "cf-versioned-deploy",
+  "version": "0.0.1",
+  "description": "Two-phase staged deploys for Cloudflare Workers: wrangler versions upload, then promote with versions deploy, plus automatic cron trigger sync",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "cloudflare",
+    "cloudflare-workers",
+    "workers",
+    "wrangler",
+    "wrangler-versions",
+    "versions-upload",
+    "versions-deploy",
+    "versioned-deploy",
+    "gradual-deployments",
+    "staged-deploy",
+    "two-phase-deploy",
+    "atomic-deploy",
+    "promote",
+    "blue-green",
+    "zero-downtime",
+    "cron-triggers",
+    "scheduled-workers",
+    "monorepo",
+    "multi-worker",
+    "ci-cd",
+    "github-actions",
+    "secrets",
+    "dotenv",
+    "deploy",
+    "cli"
+  ],
+  "homepage": "https://github.com/binochoi/cf-versioned-deploy#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binochoi/cf-versioned-deploy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/binochoi/cf-versioned-deploy/issues"
+  },
+  "bin": {
+    "cf-versions-upload": "./dist/upload.mjs",
+    "cf-versions-promote": "./dist/promote.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepare": "obuild --stub",
+    "build:dist": "obuild",
+    "release": "pnpm build:dist && pnpm publish --ignore-scripts",
+    "clean": "rm -rf dist node_modules .turbo",
+    "lint": "oxlint ./src && tsc --noEmit"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "obuild": "^0.4.38",
+    "oxlint": "^1.67.0",
+    "typescript": "^7.0.2"
+  }
+}
